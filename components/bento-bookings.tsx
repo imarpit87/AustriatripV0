@@ -85,6 +85,8 @@ function StayCard({
   dates,
   name,
   accentColor,
+  bookingUrl,
+  badgeLabel,
 }: {
   city: string
   dates: string

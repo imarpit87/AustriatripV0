@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { CloudSun, Shirt, Umbrella, ChevronDown, Sparkles } from "lucide-react"
 
@@ -9,26 +10,32 @@ const packingItems = [
   { icon: CloudSun, text: "Expect 18-24\u00B0C in late May", color: "text-sunshine" },
 ]
 
+const HERO_VIDEO_URL =
+  "https://assets.mixkit.co/videos/42491/42491-720.mp4"
+
 export function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    videoRef.current?.play().catch(() => {})
+  }, [])
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Background video */}
-      <div className="absolute inset-0">
+      {/* Background video - z-0 so it sits above body bg, below content */}
+      <div className="absolute inset-0 z-0">
         <video
+          ref={videoRef}
           className="h-full w-full object-cover"
           autoPlay
           loop
           muted
           playsInline
-        >
-          <source
-            src="https://cdn.coverr.co/videos/coverr-a-beautiful-view-of-the-austrian-alps-4246/1080p.mp4"
-            type="video/mp4"
-          />
-        </video>
-        {/* Dark glass overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/55 to-background/95" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-ocean/30 via-transparent to-sunshine/25" />
+          preload="auto"
+          poster="https://assets.mixkit.co/videos/42491/42491-thumb-720-0.jpg"
+          src={HERO_VIDEO_URL}
+        />
+        <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
       </div>
 
       {/* Hero content */}
@@ -50,17 +57,17 @@ export function HeroSection() {
             </span>
           </motion.div>
 
-          <h1 className="mb-6 text-balance text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-            Austria Family
+          <h1 className="mb-6 text-balance text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+            <span className="text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">Austria Family</span>
             <br />
             <span className="bg-gradient-to-r from-ocean via-primary to-seafoam bg-clip-text text-transparent">
               Adventure 2026
             </span>
           </h1>
-          <p className="mx-auto max-w-lg text-pretty text-lg text-muted-foreground sm:text-xl">
+          <p className="mx-auto max-w-lg text-pretty text-lg font-semibold text-white drop-shadow-lg sm:text-xl [text-shadow:0_2px_8px_rgba(0,0,0,0.8)]">
             {"Vienna \u2022 Salzburg \u2022 Innsbruck"}
             <br />
-            <span className="font-bold text-foreground/80">22 May - 30 May 2026</span>
+            <span className="font-bold">22 May - 30 May 2026</span>
           </p>
         </motion.div>
 

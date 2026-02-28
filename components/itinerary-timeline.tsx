@@ -19,7 +19,6 @@ import {
   Camera,
   Youtube,
 } from "lucide-react"
-import Image from "next/image"
 
 /* ------------------------------------------------------------------ */
 /* Types                                                               */
@@ -32,6 +31,7 @@ interface TimeEntry {
   type: EntryType
   label: string
   kidEnergy?: boolean
+  videoUrl?: string
 }
 
 interface ItineraryDay {
@@ -61,7 +61,7 @@ const itineraryData: ItineraryDay[] = [
     entries: [
       { time: "12:10 - 14:00", type: "Travel", label: "Arrive VIE + transfer to apartment (CAT/S-Bahn or Taxi)" },
       { time: "14:00 - 16:00", type: "Rest", label: "Lunch + rest at apartment" },
-      { time: "16:00 - 19:00", type: "Activity", label: "Vienna Old Town stroll (Stephansplatz)" },
+      { time: "16:00 - 19:00", type: "Activity", label: "Vienna Old Town stroll (Stephansplatz)", videoUrl: "https://www.youtube.com/watch?v=Bz68Zr3Dz4g" },
       { time: "19:00 - 20:30", type: "Meal", label: "Vegetarian/Indian-friendly dinner" },
     ],
   },
@@ -75,9 +75,9 @@ const itineraryData: ItineraryDay[] = [
     iconBg: "bg-meadow",
     entries: [
       { time: "09:00 - 09:45", type: "Travel", label: "Metro to Schonbrunn area" },
-      { time: "09:45 - 12:30", type: "Activity", label: "Schonbrunn Gardens + Zoo", kidEnergy: true },
+      { time: "09:45 - 12:30", type: "Activity", label: "Schonbrunn Gardens + Zoo", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=YKz9FO6QXKM" },
       { time: "12:30 - 14:30", type: "Rest", label: "Lunch + mid-day rest at apartment" },
-      { time: "16:30 - 19:00", type: "Activity", label: "Danube Island play time (parks, cycling paths)", kidEnergy: true },
+      { time: "16:30 - 19:00", type: "Activity", label: "Danube Island play time (parks, cycling paths)", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=dHIo62hr1FA" },
       { time: "19:00 - 20:30", type: "Meal", label: "Dinner (cook or eat out)" },
     ],
   },
@@ -90,9 +90,9 @@ const itineraryData: ItineraryDay[] = [
     icon: Sparkles,
     iconBg: "bg-sunshine",
     entries: [
-      { time: "10:00 - 13:00", type: "Activity", label: "Prater Park + amusement rides", kidEnergy: true },
+      { time: "10:00 - 13:00", type: "Activity", label: "Prater Park + amusement rides", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=y83Y3-W_Ne0" },
       { time: "13:00 - 15:30", type: "Rest", label: "Lunch + nap/rest at apartment" },
-      { time: "16:00 - 18:00", type: "Activity", label: "ZOOM Children's Museum (interactive exhibits)", kidEnergy: true },
+      { time: "16:00 - 18:00", type: "Activity", label: "ZOOM Children's Museum (interactive exhibits)", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=5GhkMvk2-ik" },
       { time: "18:30 - 20:00", type: "Meal", label: "Veg-friendly dinner near stay" },
     ],
   },
@@ -109,7 +109,7 @@ const itineraryData: ItineraryDay[] = [
       { time: "09:28 - 11:53", type: "Travel", label: "OBB Railjet Train: Wien Hbf to Salzburg Hbf" },
       { time: "12:00 - 13:00", type: "Travel", label: "Transfer + check-in (Hotel Haus Arenberg)" },
       { time: "13:00 - 16:00", type: "Rest", label: "Lunch + rest" },
-      { time: "16:00 - 18:30", type: "Activity", label: "Mirabell Gardens + Old Town stroll" },
+      { time: "16:00 - 18:30", type: "Activity", label: "Mirabell Gardens + Old Town stroll", videoUrl: "https://www.youtube.com/watch?v=5K0yyEJRXB8" },
       { time: "19:00 - 20:30", type: "Meal", label: "Veg-friendly dinner in Old Town" },
     ],
   },
@@ -123,9 +123,9 @@ const itineraryData: ItineraryDay[] = [
     iconBg: "bg-coral",
     entries: [
       { time: "09:30 - 10:00", type: "Travel", label: "Bus to Hellbrunn Palace" },
-      { time: "10:00 - 12:15", type: "Activity", label: "Hellbrunn Trick Fountains", kidEnergy: true },
+      { time: "10:00 - 12:15", type: "Activity", label: "Hellbrunn Trick Fountains", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=J-FGbL3_ND4" },
       { time: "12:15 - 15:30", type: "Rest", label: "Lunch + kids downtime" },
-      { time: "16:00 - 18:30", type: "Activity", label: "Salzburg Old Town + river promenade + playground" },
+      { time: "16:00 - 18:30", type: "Activity", label: "Salzburg Old Town + river promenade + playground", videoUrl: "https://www.youtube.com/watch?v=lwSfFZZ14Gk" },
       { time: "19:00 - 20:30", type: "Meal", label: "Dinner" },
     ],
   },
@@ -140,9 +140,9 @@ const itineraryData: ItineraryDay[] = [
     entries: [
       { time: "08:00 - 10:15", type: "Travel", label: "Train: Salzburg Hbf to Hallstatt Bahnhof" },
       { time: "10:15 - 10:30", type: "Travel", label: "Ferry to Hallstatt village" },
-      { time: "10:30 - 13:00", type: "Activity", label: "Hallstatt lakeside walk + viewpoints" },
+      { time: "10:30 - 13:00", type: "Activity", label: "Hallstatt lakeside walk + viewpoints", videoUrl: "https://www.youtube.com/watch?v=aOzc--B05NY" },
       { time: "13:00 - 14:00", type: "Rest", label: "Lunch (picnic by the lake)" },
-      { time: "14:00 - 15:30", type: "Activity", label: "Funicular / Skywalk OR Salt Mine" },
+      { time: "14:00 - 15:30", type: "Activity", label: "Funicular / Skywalk OR Salt Mine", videoUrl: "https://www.youtube.com/watch?v=BiQ2M8olTeE" },
       { time: "16:00 - 18:30", type: "Travel", label: "Ferry + train back to Salzburg" },
     ],
   },
@@ -159,8 +159,8 @@ const itineraryData: ItineraryDay[] = [
       { time: "09:56 - 11:44", type: "Travel", label: "OBB Railjet Train: Salzburg Hbf to Innsbruck Hbf" },
       { time: "11:45 - 12:30", type: "Travel", label: "Check-in (Absteige Innsbruck)" },
       { time: "12:30 - 15:00", type: "Rest", label: "Rest + lunch" },
-      { time: "15:45 - 17:30", type: "Activity", label: "Mieders Alpine Coaster (Serlesbahnen)", kidEnergy: true },
-      { time: "18:15 - 19:15", type: "Activity", label: "Innsbruck Old Town evening stroll (Golden Roof)" },
+      { time: "15:45 - 17:30", type: "Activity", label: "Mieders Alpine Coaster (Serlesbahnen)", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=eLEuIc-hKbA" },
+      { time: "18:15 - 19:15", type: "Activity", label: "Innsbruck Old Town evening stroll (Golden Roof)", videoUrl: "https://www.youtube.com/watch?v=k3X4P5iBDHk" },
       { time: "19:15 - 20:30", type: "Meal", label: "Dinner" },
     ],
   },
@@ -174,10 +174,10 @@ const itineraryData: ItineraryDay[] = [
     iconBg: "bg-seafoam",
     entries: [
       { time: "08:00 - 09:15", type: "Travel", label: "Bus/shuttle to Stubai valley" },
-      { time: "09:15 - 12:30", type: "Activity", label: "Stubai Glacier (guaranteed snow play)", kidEnergy: true },
+      { time: "09:15 - 12:30", type: "Activity", label: "Stubai Glacier (guaranteed snow play)", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=mH2Y-rqfzTo" },
       { time: "12:30 - 13:45", type: "Travel", label: "Return to Innsbruck" },
       { time: "13:45 - 15:00", type: "Rest", label: "Lunch + rest" },
-      { time: "15:30 - 17:30", type: "Activity", label: "Swarovski Crystal Worlds + Play Tower", kidEnergy: true },
+      { time: "15:30 - 17:30", type: "Activity", label: "Swarovski Crystal Worlds + Play Tower", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=q-FoUrqSUQg" },
       { time: "17:30 - 18:15", type: "Travel", label: "Shuttle return to Innsbruck" },
       { time: "19:00 - 20:30", type: "Meal", label: "Dinner" },
     ],
@@ -194,26 +194,12 @@ const itineraryData: ItineraryDay[] = [
       { time: "08:00 - 08:45", type: "Travel", label: "Check-out + reach Innsbruck Hbf" },
       { time: "09:14 - 13:30", type: "Travel", label: "OBB Railjet Train: Innsbruck Hbf to Wien Hbf" },
       { time: "13:30 - 16:30", type: "Rest", label: "Rest + late lunch" },
-      { time: "16:30 - 18:00", type: "Activity", label: "Naschmarkt (souvenirs + early dinner)" },
+      { time: "16:30 - 18:00", type: "Activity", label: "Naschmarkt (souvenirs + early dinner)", videoUrl: "https://www.youtube.com/watch?v=1md9KcnhrUk" },
       { time: "19:00 - 20:00", type: "Travel", label: "Transfer to Vienna Airport" },
       { time: "22:25", type: "Flight", label: "Depart VIE on G9228" },
     ],
   },
 ]
-
-const cityImageMap: Record<string, string> = {
-  Vienna:
-    "https://images.unsplash.com/photo-1542718610-3b5322c81384?auto=format&fit=crop&w=800&q=80",
-  Salzburg:
-    "https://images.unsplash.com/photo-1521292270410-a8c53642e9d0?auto=format&fit=crop&w=800&q=80",
-  Innsbruck:
-    "https://images.unsplash.com/photo-1601758260944-222a90e92a71?auto=format&fit=crop&w=800&q=80",
-  "Hallstatt Day Trip":
-    "https://images.unsplash.com/photo-1508261306211-45a1c5c2a5c5?auto=format&fit=crop&w=800&q=80",
-}
-
-const defaultCityImage =
-  "https://images.unsplash.com/photo-1508261306211-45a1c5c2a5c5?auto=format&fit=crop&w=800&q=80"
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -254,8 +240,6 @@ function KidEnergyBadge() {
 function DayCard({ day, index }: { day: ItineraryDay; index: number }) {
   const [open, setOpen] = useState(index === 0)
   const kidCount = (day.entries ?? []).filter((e) => e.kidEnergy).length
-  const cityImage = cityImageMap[day.city] ?? defaultCityImage
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -328,7 +312,6 @@ function DayCard({ day, index }: { day: ItineraryDay; index: number }) {
                   <div className="pointer-events-none absolute left-[22px] top-1 bottom-1 w-px bg-gradient-to-b from-ocean/40 via-ocean/25 to-transparent" />
                   {(day.entries ?? []).map((entry, i) => {
                     const cfg = typeConfig[entry.type] ?? typeConfig.Activity
-                    const isActivity = entry.type === "Activity"
                     return (
                       <motion.div
                         key={i}
@@ -363,25 +346,17 @@ function DayCard({ day, index }: { day: ItineraryDay; index: number }) {
                               {entry.kidEnergy && <KidEnergyBadge />}
                             </div>
 
-                            {isActivity && (
-                              <button
-                                type="button"
-                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-ocean transition-colors hover:text-ocean/80"
+                            {entry.videoUrl && (
+                              <a
+                                href={entry.videoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-md bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600 transition-colors hover:bg-blue-100 hover:text-blue-800"
                               >
-                                <Youtube className="h-3.5 w-3.5" />
+                                <Youtube className="h-4 w-4" />
                                 Watch video
-                              </button>
+                              </a>
                             )}
-                          </div>
-
-                          {/* Thumbnail image */}
-                          <div className="relative h-16 w-24 shrink-0 overflow-hidden rounded-xl bg-black/30 shadow-lg ring-1 ring-white/10">
-                            <Image
-                              src={cityImage}
-                              alt={`${day.city} inspiration`}
-                              fill
-                              className="object-cover"
-                            />
                           </div>
                         </div>
                       </motion.div>

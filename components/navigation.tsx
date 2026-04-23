@@ -53,7 +53,11 @@ export function Navigation() {
               href={link.href}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="rounded-xl px-4 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground hover:bg-sunshine/20"
+              className={`rounded-xl px-4 py-2 text-sm font-semibold transition-colors hover:bg-sunshine/20 ${
+                scrolled
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "text-white/85 hover:text-white"
+              }`}
             >
               {link.label}
             </motion.a>

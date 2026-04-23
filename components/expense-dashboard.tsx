@@ -43,7 +43,7 @@ const budgetData = [
   },
   {
     name: "Transport",
-    value: 3600,
+    value: 5600,
     color: "#06B6D4",
     bgColor: "rgba(6, 182, 212, 0.15)",
     icon: Train,

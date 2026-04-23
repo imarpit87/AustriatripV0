@@ -125,7 +125,7 @@ const itineraryData: ItineraryDay[] = [
       { time: "09:30 - 10:00", type: "Travel", label: "Travel to Hellbrunn Palace" },
       { time: "10:00 - 12:00", type: "Activity", label: "Hellbrunn Palace & Trick Fountains", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=J-FGbL3_ND4" },
       { time: "12:00 - 13:00", type: "Travel", label: "Pick up rental car from Salzburg" },
-      { time: "13:00 - 18:00", type: "Activity", label: "Drive to Wolfgangsee (St. Gilgen), lake walk + optional cable car", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=lwSfFZZ14Gk" },
+      { time: "13:00 - 18:00", type: "Activity", label: "Drive to Wolfgangsee (St. Gilgen), lake walk + optional cable car", kidEnergy: true, videoUrl: "https://www.youtube.com/watch?v=RJr-oDjW61o" },
       { time: "19:00 - 20:30", type: "Meal", label: "Dinner" },
     ],
   },

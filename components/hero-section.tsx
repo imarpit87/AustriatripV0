@@ -68,6 +68,8 @@ export function HeroSection() {
             {"Vienna \u2022 Salzburg \u2022 Innsbruck"}
             <br />
             <span className="font-bold">22 May - 30 May 2026</span>
+            <br />
+            <span className="text-base font-bold sm:text-lg">Emirates DXB Terminal 3 - VIE Terminal 3</span>
           </p>
         </motion.div>
 

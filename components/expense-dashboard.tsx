@@ -10,46 +10,77 @@ import {
   Ticket,
   Train,
   ShieldQuestion,
+  FileCheck2,
+  Car,
+  MapPinned,
 } from "lucide-react"
 
 const budgetData = [
   {
-    name: "Flights",
-    value: 9292,
+    name: "Flights - Emirates",
+    value: 13398,
     color: "#3B82F6",
     bgColor: "rgba(59, 130, 246, 0.15)",
     icon: Plane,
   },
   {
-    name: "Accommodations",
+    name: "Visa",
+    value: 1000,
+    color: "#8B5CF6",
+    bgColor: "rgba(139, 92, 246, 0.15)",
+    icon: FileCheck2,
+  },
+  {
+    name: "Stays",
     value: 7449,
     color: "#10B981",
     bgColor: "rgba(16, 185, 129, 0.15)",
     icon: Building2,
   },
   {
-    name: "Food & Groceries",
-    value: 4320,
-    color: "#F59E0B",
-    bgColor: "rgba(245, 158, 11, 0.15)",
-    icon: UtensilsCrossed,
+    name: "Intercity trains",
+    value: 2053,
+    color: "#06B6D4",
+    bgColor: "rgba(6, 182, 212, 0.15)",
+    icon: Train,
   },
   {
-    name: "Attractions",
+    name: "Airport trains confirmed",
+    value: 104,
+    color: "#14B8A6",
+    bgColor: "rgba(20, 184, 166, 0.15)",
+    icon: Train,
+  },
+  {
+    name: "Other local transport",
+    value: 310,
+    color: "#0EA5E9",
+    bgColor: "rgba(14, 165, 233, 0.15)",
+    icon: MapPinned,
+  },
+  {
+    name: "Car rental, 2 days",
+    value: 2000,
+    color: "#64748B",
+    bgColor: "rgba(100, 116, 139, 0.15)",
+    icon: Car,
+  },
+  {
+    name: "Activities and tickets",
     value: 2650,
     color: "#F97316",
     bgColor: "rgba(249, 115, 22, 0.15)",
     icon: Ticket,
   },
   {
-    name: "Transport",
-    value: 5600,
-    color: "#06B6D4",
-    bgColor: "rgba(6, 182, 212, 0.15)",
-    icon: Train,
+    name: "Food and groceries",
+    value: 4320,
+    color: "#F59E0B",
+    bgColor: "rgba(245, 158, 11, 0.15)",
+    icon: UtensilsCrossed,
   },
   {
-    name: "Misc / Buffer",
+    name: "Miscellaneous buffer",
     value: 2000,
     color: "#84CC16",
     bgColor: "rgba(132, 204, 22, 0.15)",
@@ -58,6 +89,11 @@ const budgetData = [
 ]
 
 const total = budgetData.reduce((sum, item) => sum + item.value, 0)
+
+const costNotes = [
+  "Intercity trains include the confirmed Innsbruck Hbf -> Wien Hbf RJX 861 booking at approx. AED 743.",
+  "Airport trains confirmed: 22 May Flughafen Wien -> Wien Hbf EUR 13 (AED 52) and 30 May Wien Hbf -> Flughafen Wien EUR 13 (AED 52).",
+]
 
 function CustomTooltip({ active, payload }: TooltipProps<number, string>) {
   if (active && payload && payload.length) {
@@ -97,6 +133,9 @@ export function ExpenseDashboard() {
           <h2 className="text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
             Expense Dashboard
           </h2>
+          <p className="mx-auto mt-3 w-fit rounded-full bg-sunshine/25 px-4 py-1.5 text-xs font-bold text-accent-foreground">
+            Updated after confirmed Emirates + OBB bookings
+          </p>
         </motion.div>
 
         <motion.div
@@ -196,6 +235,13 @@ export function ExpenseDashboard() {
                 })}
               </div>
             </div>
+          </div>
+          <div className="mt-8 grid gap-3 border-t border-white/10 pt-6 sm:grid-cols-2">
+            {costNotes.map((note) => (
+              <p key={note} className="rounded-xl bg-secondary/35 px-4 py-3 text-xs font-medium leading-relaxed text-muted-foreground">
+                {note}
+              </p>
+            ))}
           </div>
         </motion.div>
       </div>

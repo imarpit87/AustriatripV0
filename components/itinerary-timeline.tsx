@@ -18,6 +18,7 @@ import {
   Palette,
   Camera,
   Youtube,
+  Plane,
 } from "lucide-react"
 
 /* ------------------------------------------------------------------ */
@@ -52,17 +53,22 @@ interface ItineraryDay {
 const itineraryData: ItineraryDay[] = [
   {
     day: 1,
-    date: "22 May",
+    date: "22 May 2026",
     weekday: "Friday",
-    city: "Vienna",
-    subtitle: "Arrival & Old Town",
+    city: "Dubai to Vienna",
+    subtitle: "Dubai to Vienna Arrival",
     icon: Landmark,
     iconBg: "bg-ocean",
     entries: [
-      { time: "12:10 - 14:00", type: "Travel", label: "Arrive VIE + transfer to apartment (CAT/S-Bahn or Taxi)" },
-      { time: "14:00 - 16:00", type: "Rest", label: "Lunch + rest at apartment" },
-      { time: "16:00 - 19:00", type: "Activity", label: "Vienna Old Town stroll (Stephansplatz)", videoUrl: "https://www.youtube.com/watch?v=Bz68Zr3Dz4g" },
-      { time: "19:00 - 20:30", type: "Meal", label: "Vegetarian/Indian-friendly dinner" },
+      { time: "08:55", type: "Flight", label: "Emirates EK 127 departs Dubai DXB Terminal 3" },
+      { time: "12:55", type: "Flight", label: "Arrive Vienna VIE Terminal 3" },
+      { time: "12:55 - 13:25", type: "Travel", label: "Immigration, baggage, and move towards airport train station" },
+      { time: "13:35 - 13:55", type: "Travel", label: "Booked 13:35 train from Flughafen Wien (Vienna Airport) to Wien Hbf - flexible ticket valid for any train within 2 hours; cost EUR 13 / AED 52" },
+      { time: "13:55 - 14:30", type: "Travel", label: "Transfer from Wien Hbf to apartment by taxi/metro" },
+      { time: "14:30 - 16:30", type: "Rest", label: "Check-in, lunch, and rest at apartment" },
+      { time: "16:30 - 19:00", type: "Activity", label: "Gentle Vienna Old Town stroll / Stephansplatz", videoUrl: "https://www.youtube.com/watch?v=Bz68Zr3Dz4g" },
+      { time: "19:00 - 20:30", type: "Meal", label: "Vegetarian-friendly dinner and early sleep" },
+      { time: "Tip", type: "Rest", label: "Because this is arrival day with kids and luggage, keep the evening light. The airport train ticket is flexible for up to 2 hours, so there is no stress if immigration or baggage takes longer." },
     ],
   },
   {
@@ -183,19 +189,25 @@ const itineraryData: ItineraryDay[] = [
   },
   {
     day: 9,
-    date: "30 May",
+    date: "30 May 2026",
     weekday: "Saturday",
-    city: "Innsbruck to Home",
-    subtitle: "Naschmarkt & Departure",
+    city: "Innsbruck to Vienna Airport to Dubai",
+    subtitle: "Innsbruck to Vienna Airport to Dubai",
     icon: Camera,
     iconBg: "bg-sunshine",
     entries: [
-      { time: "08:00 - 08:45", type: "Travel", label: "Check-out + reach Innsbruck Hbf" },
-      { time: "09:14 - 13:30", type: "Travel", label: "OBB Railjet Train: Innsbruck Hbf to Wien Hbf" },
-      { time: "13:30 - 16:30", type: "Rest", label: "Rest + late lunch" },
-      { time: "16:30 - 18:00", type: "Activity", label: "Naschmarkt (souvenirs + early dinner)", videoUrl: "https://www.youtube.com/watch?v=1md9KcnhrUk" },
-      { time: "19:00 - 20:00", type: "Travel", label: "Transfer to Vienna Airport" },
-      { time: "22:25", type: "Flight", label: "Depart VIE on G9228" },
+      { time: "05:45 - 06:15", type: "Travel", label: "Check-out and reach Innsbruck Hbf by taxi/walk" },
+      { time: "06:15 - 07:00", type: "Meal", label: "Breakfast/snacks and boarding buffer at station" },
+      { time: "07:14 - 11:32", type: "Travel", label: "Confirmed RJX 861 Railjet Xpress from Innsbruck Hbf to Wien Hbf - 1st class, Wagen 36, seats 51, 52, 53, 54, table seats with window + aisle; cost EUR 185.80 / AED 743" },
+      { time: "11:32 - 12:13", type: "Travel", label: "Platform change and buffer at Wien Hbf" },
+      { time: "12:13 - 12:30", type: "Travel", label: "Confirmed flexible airport train from Wien Hbf to Flughafen Wien (Vienna Airport), arriving approx. 12:30; cost EUR 13 / AED 52" },
+      { time: "12:30 - 12:45", type: "Travel", label: "Arrive at airport and orient/check terminal" },
+      { time: "12:45 - 14:45", type: "Travel", label: "Emirates check-in, baggage drop, and security" },
+      { time: "14:45 - 15:35", type: "Rest", label: "Boarding buffer" },
+      { time: "15:35 - 23:10", type: "Flight", label: "Emirates EK 128 Vienna VIE Terminal 3 to Dubai DXB Terminal 3" },
+      { time: "Important", type: "Travel", label: "This is now an airport-transfer day, not a sightseeing day. Do not plan Naschmarkt or any Vienna city stop on 30 May. The 12:13 airport train gives a good buffer for the 15:35 Emirates flight." },
+      { time: "Backup", type: "Travel", label: "If RJX 861 from Innsbruck is delayed heavily and you reach Wien Hbf after 12:00, skip the booked airport train and take a taxi directly from Wien Hbf to Vienna Airport." },
+      { time: "Tip", type: "Rest", label: "With kids and luggage, the 41-minute buffer at Wien Hbf is comfortable. Use lifts/escalators, follow signs for Flughafen Wien / Vienna Airport, and keep snacks/water ready." },
     ],
   },
 ]
@@ -209,7 +221,7 @@ const typeConfig: Record<EntryType, { icon: React.ElementType; color: string; bg
   Rest: { icon: Bed, color: "text-meadow", bg: "bg-meadow/12" },
   Activity: { icon: Sparkles, color: "text-coral", bg: "bg-coral/12" },
   Meal: { icon: UtensilsCrossed, color: "text-sunshine", bg: "bg-sunshine/15" },
-  Flight: { icon: Train, color: "text-ocean", bg: "bg-ocean/12" },
+  Flight: { icon: Plane, color: "text-ocean", bg: "bg-ocean/12" },
 }
 
 /* ------------------------------------------------------------------ */

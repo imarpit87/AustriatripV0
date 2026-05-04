@@ -45,6 +45,8 @@ function FlightLeg({
   depart,
   arrive,
   flight,
+  route,
+  duration,
 }: {
   date: string
   from: string
@@ -52,6 +54,8 @@ function FlightLeg({
   depart: string
   arrive: string
   flight: string
+  route: string
+  duration: string
 }) {
   return (
     <div className="flex flex-col gap-2 rounded-xl bg-ocean/5 p-4">
@@ -75,6 +79,10 @@ function FlightLeg({
           <p className="text-xl font-extrabold text-foreground">{to}</p>
           <p className="text-xs text-muted-foreground">{arrive}</p>
         </div>
+      </div>
+      <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-[11px] font-semibold text-muted-foreground">
+        <span>{route}</span>
+        <span>{duration}</span>
       </div>
     </div>
   )
@@ -171,30 +179,34 @@ export function BentoBookings() {
               </div>
               <div>
                 <h3 className="text-sm font-bold text-foreground">Flights</h3>
-                <p className="text-xs text-muted-foreground">Air Arabia</p>
+                <p className="text-xs text-muted-foreground">Emirates from Dubai DXB Terminal 3</p>
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <FlightLeg
-                date="22 May 2026"
-                from="SHJ"
+                date="Friday, 22 May 2026"
+                from="DXB"
                 to="VIE"
-                depart="08:00"
-                arrive="12:10"
-                flight="G9970"
+                depart="08:55 T3"
+                arrive="12:55 T3"
+                flight="EK 127"
+                route="Dubai DXB -> Vienna VIE"
+                duration="6 hours"
               />
               <FlightLeg
-                date="30 May 2026"
+                date="Saturday, 30 May 2026"
                 from="VIE"
-                to="SHJ"
-                depart="22:25"
-                arrive="06:05+1"
-                flight="G9228"
+                to="DXB"
+                depart="15:35 T3"
+                arrive="23:10 T3"
+                flight="EK 128"
+                route="Vienna VIE -> Dubai DXB"
+                duration="5 hours 35 minutes"
               />
             </div>
             <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
               <ArrowRight className="h-3 w-3 text-ocean" />
-              <span className="font-medium">Sharjah to Vienna round trip</span>
+              <span className="font-medium">Dubai DXB Terminal 3 to Vienna VIE Terminal 3 round trip - AED 13,398 for 2 adults + 2 children</span>
             </div>
           </BentoCard>
 
